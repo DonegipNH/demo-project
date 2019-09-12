@@ -4,7 +4,16 @@ var queryString = require('querystring');
 var chanel = require('../models/chanel.model');
 
 module.exports.index = function(req, res){
-    res.render('chanels/chanelIndex');
+    chanel.find({}, function(err, tempData){
+        var tempDataMap = [];
+        tempData.forEach(function(temp){
+            // tempDataMap[temp._id] = temp;
+            tempDataMap.push(temp);
+        });        
+        res.render('chanels/chanelIndex', {
+            temperatureData: tempDataMap
+        });
+    });        
 };
 
 module.exports.update = function(req, res){
@@ -22,9 +31,17 @@ module.exports.update = function(req, res){
     res.redirect('/chanel');
 };
 
-module.exports.get = function(req, res){    
+module.exports.get = function(req, res){   
     res.writeHead(200, {
-        'Content-Type':'application/json'
-    });    
-    res.end(JSON.stringify());    
+        'Content-Type': 'application/json'
+    });
+    chanel.find({}, function(err, tempData){
+        var tempDataMap = [];
+        tempData.forEach(function(temp){
+            // tempDataMap[temp._id] = temp;
+            tempDataMap.push(temp);
+        });
+        console.log(tempData);
+        res.end(JSON.stringify(tempDataMap));
+    });
 };
