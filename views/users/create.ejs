@@ -1,0 +1,22 @@
+<html>
+    <body>
+
+    </body>
+    <head>
+        <h1>Create user</h1>        
+        <% if(errorList){ %>
+            <div class="alert alert-danger"><%= errorList %></div><br/>
+        <% } %> 
+        <form action="/users/create" method="POST">
+            <label>Name</label>
+            <input id="name" type="text" name="name"/><br/>
+            <label>Email</label>
+            <input id="email" type="text" name="email"/><br/>
+            <label>Password</label>
+            <input id="password" type="password" name="password"/><br/>
+            <label>Confirm Password</label>
+            <input id="passwordConfirmation" type="password" name="passwordConfirmation"/><br/>
+            <button>Create</button>
+        </form>
+    </head>
+</html>

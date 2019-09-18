@@ -6,8 +6,7 @@ var chanel = require('../models/chanel.model');
 module.exports.index = function(req, res){
     chanel.find({}, function(err, tempData){
         var tempDataMap = [];
-        tempData.forEach(function(temp){
-            // tempDataMap[temp._id] = temp;
+        tempData.forEach(function(temp){            
             tempDataMap.push(temp);
         });        
         res.render('chanels/chanelIndex', {
